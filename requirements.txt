@@ -1,0 +1,8 @@
+torch>=2.3.0
+torchvision>=0.18.0
+transformers>=4.40.0
+numpy>=1.26.0
+scipy>=1.13.0
+gudhi>=3.9.0
+ripser>=0.6.8
+persim>=0.3.7
