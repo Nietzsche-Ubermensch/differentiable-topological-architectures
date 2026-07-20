@@ -1,0 +1,50 @@
+name: Issue Triage
+
+on:
+  issues:
+    types: [opened, reopened]
+  schedule:
+    - cron: '0 9 * * *'
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    name: Triage issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+            if (!issue) return;
+
+            const text = `${issue.title} ${issue.body || ''}`.toLowerCase();
+            const labels = [];
+
+            if (text.match(/test|coverage|suite/)) labels.push('tests');
+            if (text.match(/error|crash|bug|fail|broken/)) labels.push('bug');
+            if (text.match(/feature|add|support|implement|new/)) labels.push('enhancement');
+            if (text.match(/security|vulnerability|cve|exploit/)) labels.push('security');
+            if (text.match(/docs|documentation|readme/)) labels.push('documentation');
+            if (text.match(/ci|workflow|action|pipeline/)) labels.push('ci');
+            if (text.match(/refactor|cleanup|restructure/)) labels.push('refactor');
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: 'Issue triaged automatically. An agent will pick this up shortly.'
+            });
