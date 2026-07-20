@@ -1,0 +1,139 @@
+# Build artifacts
+server/dist/
+client/dist/
+dist/
+build/
+
+# SQLite data
+data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variable files
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+.env.test
+!.env.example
+
+# API keys, tokens, secrets — NEVER commit accidentally
+*api_key*
+*API_KEY*
+*token*
+*TOKEN*
+*secret*
+*SECRET*
+*_PAT*
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*
+*CREDENTIALS*
+
+# Named credential files
+credentials.json
+service-account.json
+firebase-config.json
+google-credentials.json
+hermes.key
+
+# Hermes config with secrets
+.hermes/.env
+
+# Blackbox config with keys
+.blackboxcli/settings.json
+.blackbox/mcp.json
+
+# SSH keys
+.ssh/
+id_rsa
+id_ed25519
+*.ssh
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+venv/
+.venv/
+env/
+ENV/
+
+# Node
+node_modules/
+.npm
+.yarn-integrity
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+.pytest_cache/
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# ONNX models
+*.onnx
+
+# Generated images
+*.png
+*.jpg
+*.jpeg
+output/
+generated/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Cache
+.cache
+.parcel-cache
+.next
+.nuxt
+.docusaurus
+.svelte-kit/
+.vite/
